@@ -51,7 +51,7 @@ def main():
         print("No file selected. Exiting.")
         return
     
-    output_file = os.getenv('ENCRYPTED_FILE')
+    output_file = os.getenv('ENCRYPTED_FILE_NAME')
     key_file = 'key.txt'
     key = os.urandom(32)
     binary_data = convert_to_binary(input_file)

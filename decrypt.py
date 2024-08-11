@@ -59,7 +59,7 @@ def main():
         print("No file selected. Exiting.")
         return
     
-    output_file = os.getenv('DECRYPTED_FILE')
+    output_file = os.getenv('DECRYPTED_FILE_NAME')
     key_file = 'key.txt'
     
     key_hex = load_key_from_file(key_file)
