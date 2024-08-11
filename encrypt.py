@@ -44,6 +44,11 @@ def select_file_with_fzf():
         return None
 
 
+def generate_encrypted_file_name(original_file_name):
+    base, ext = os.path.splitext(original_file_name)
+    return f"{base}_encrypted{ext}"
+
+
 def main():
     load_dotenv()
     input_file = select_file_with_fzf()
@@ -51,7 +56,7 @@ def main():
         print("No file selected. Exiting.")
         return
     
-    output_file = os.getenv('ENCRYPTED_FILE_NAME')
+    output_file = generate_encrypted_file_name(input_file)
     key_file = 'key.txt'
     key = os.urandom(32)
     binary_data = convert_to_binary(input_file)

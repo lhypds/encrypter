@@ -51,6 +51,13 @@ def select_file_with_fzf():
         return None
 
 
+def generate_decrypted_file_name(encrypted_file_name):
+    if "_encrypted" in encrypted_file_name:
+        return encrypted_file_name.replace("_encrypted", "")
+    else:
+        return f"{encrypted_file_name}_decrypted"
+
+
 def main():
     load_dotenv()
     
@@ -59,7 +66,7 @@ def main():
         print("No file selected. Exiting.")
         return
     
-    output_file = os.getenv('DECRYPTED_FILE_NAME')
+    output_file = generate_decrypted_file_name(input_file)
     key_file = 'key.txt'
     
     key_hex = load_key_from_file(key_file)
