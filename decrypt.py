@@ -67,7 +67,8 @@ def main():
         return
     
     output_file = generate_decrypted_file_name(input_file)
-    key_file = 'key.txt'
+    base, ext = os.path.splitext(input_file)
+    key_file = base.replace('_encrypted', '') + '_key.txt'
     
     key_hex = load_key_from_file(key_file)
     key = bytes.fromhex(key_hex)

@@ -57,7 +57,8 @@ def main():
         return
     
     output_file = generate_encrypted_file_name(input_file)
-    key_file = 'key.txt'
+    base, ext = os.path.splitext(input_file)
+    key_file = f"{base}_key.txt"
     key = os.urandom(32)
     binary_data = convert_to_binary(input_file)
     
