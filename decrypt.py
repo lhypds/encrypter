@@ -78,6 +78,10 @@ def main():
     base, ext = os.path.splitext(input_file)
     key_file = base.replace('_encrypted', '') + '_key.txt'
     
+    if not os.path.exists(key_file):
+        print(f"Key file '{key_file}' does not exist. Exiting.")
+        return
+    
     key_hex = load_key_from_file(key_file)
     key = bytes.fromhex(key_hex)
     
