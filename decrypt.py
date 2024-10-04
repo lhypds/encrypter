@@ -1,5 +1,6 @@
 import os
 import subprocess
+import argparse
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.backends import default_backend
@@ -60,8 +61,15 @@ def generate_decrypted_file_name(encrypted_file_name):
 
 def main():
     load_dotenv()
+
+    parser = argparse.ArgumentParser(description='Decrypt a file.')
+    parser.add_argument('-f', '--file', type=str, help='The encrypted file to decrypt.')
+    args = parser.parse_args()
     
-    input_file = select_file_with_fzf()
+    input_file = args.file
+    if not input_file:
+        input_file = select_file_with_fzf()
+    
     if not input_file:
         print("No file selected. Exiting.")
         return
